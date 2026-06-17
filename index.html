@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Gaurav Singh — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet"/>
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --off-white: #F7F5F0;
+  --ink: #141414;
+  --ink-soft: #444;
+  --ink-muted: #888;
+  --gold: #C9A84C;
+  --gold-light: #E8D5A3;
+  --rust: #B85C38;
+  --sage: #4A7C59;
+  --card-bg: #FFFFFF;
+  --border: rgba(0,0,0,0.08);
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--off-white); color: var(--ink); overflow-x: hidden; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; width: 100%; z-index: 100;
+  padding: 18px 40px;
+  display: flex; justify-content: space-between; align-items: center;
+  background: rgba(247,245,240,0.92); backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-name { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: var(--ink); text-decoration: none; }
+.nav-links { display: flex; gap: 28px; list-style: none; }
+.nav-links a { font-size: 13px; font-weight: 500; letter-spacing: 0.8px; text-transform: uppercase; color: var(--ink-muted); text-decoration: none; transition: color 0.2s; }
+.nav-links a:hover { color: var(--gold); }
+
+/* HERO */
+.hero {
+  min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr;
+  align-items: center; padding: 100px 40px 60px; gap: 60px;
+  max-width: 1100px; margin: 0 auto;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 11px; font-weight: 700; letter-spacing: 2.5px;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 24px;
+}
+.hero-eyebrow::before { content: ''; display: block; width: 28px; height: 1px; background: var(--gold); }
+.hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(52px, 6vw, 80px); font-weight: 900; line-height: 1.0; color: var(--ink); margin-bottom: 20px; }
+.hero h1 em { font-style: italic; color: var(--gold); }
+.hero-tagline { font-size: 16px; font-weight: 300; color: var(--ink-soft); line-height: 1.7; margin-bottom: 36px; max-width: 400px; }
+.hero-tagline strong { font-weight: 500; color: var(--ink); }
+.hero-cta { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+.btn-gold {
+  padding: 14px 32px; border-radius: 4px; background: var(--gold); color: #fff;
+  font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 700;
+  letter-spacing: 1px; text-transform: uppercase; text-decoration: none;
+  transition: background 0.2s, transform 0.2s; border: none; cursor: pointer;
+}
+.btn-gold:hover { background: #b8943f; transform: translateY(-1px); }
+.btn-ghost { padding: 14px 0; font-size: 13px; font-weight: 600; letter-spacing: 0.5px; color: var(--ink-soft); text-decoration: none; border-bottom: 1.5px solid var(--ink-soft); transition: color 0.2s, border-color 0.2s; }
+.btn-ghost:hover { color: var(--gold); border-color: var(--gold); }
+.hero-right { position: relative; display: flex; justify-content: center; }
+.hero-img-frame { position: relative; width: 340px; height: 440px; }
+.hero-img-frame::before { content: ''; position: absolute; top: 16px; left: 16px; right: -16px; bottom: -16px; border: 2px solid var(--gold-light); border-radius: 4px; z-index: 0; }
+.hero-photo { width: 100%; height: 100%; object-fit: cover; border-radius: 4px; position: relative; z-index: 1; display: block; }
+.hero-photo-placeholder { width: 100%; height: 100%; border-radius: 4px; background: linear-gradient(135deg, #e8e0d0 0%, #d4c9b0 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; z-index: 1; gap: 12px; }
+.hero-photo-placeholder .avatar-icon { font-size: 80px; opacity: 0.4; }
+.hero-photo-placeholder p { font-size: 12px; color: var(--ink-muted); letter-spacing: 1px; text-transform: uppercase; }
+.hero-badge { position: absolute; bottom: -20px; right: -10px; z-index: 2; background: var(--ink); color: #fff; padding: 14px 20px; border-radius: 4px; font-size: 12px; font-weight: 500; line-height: 1.5; }
+.hero-badge strong { display: block; font-size: 18px; font-family: 'Playfair Display', serif; }
+
+/* SECTIONS */
+.section { padding: 96px 40px; max-width: 1100px; margin: 0 auto; }
+.section-label { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+.section-label::after { content: ''; flex: 1; height: 1px; background: var(--gold-light); }
+.section-title { font-family: 'Playfair Display', serif; font-size: clamp(32px, 4vw, 48px); font-weight: 700; color: var(--ink); margin-bottom: 52px; line-height: 1.2; }
+
+/* ABOUT */
+.about-section { background: var(--ink); }
+.about-inner { max-width: 1100px; margin: 0 auto; padding: 96px 40px; }
+.about-inner .section-label { color: var(--gold-light); }
+.about-inner .section-label::after { background: rgba(201,168,76,0.3); }
+.about-inner .section-title { color: var(--off-white); margin-bottom: 40px; }
+.about-grid { display: grid; grid-template-columns: 3fr 2fr; gap: 60px; align-items: start; }
+.about-text { font-size: 17px; font-weight: 300; line-height: 1.85; color: rgba(247,245,240,0.75); }
+.about-text strong { color: var(--off-white); font-weight: 500; }
+.about-highlights { display: flex; flex-direction: column; gap: 14px; }
+.highlight-chip { background: rgba(255,255,255,0.05); border: 1px solid rgba(201,168,76,0.25); border-radius: 4px; padding: 16px 20px; display: flex; align-items: center; gap: 14px; }
+.highlight-chip .chip-icon { font-size: 22px; }
+.highlight-chip .chip-text { font-size: 13px; color: rgba(247,245,240,0.75); line-height: 1.4; }
+.highlight-chip .chip-text strong { color: var(--gold-light); font-weight: 600; display: block; margin-bottom: 2px; }
+
+/* ACHIEVEMENTS */
+.achievements-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.achievement-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 4px; padding: 32px 28px; transition: transform 0.25s, box-shadow 0.25s; position: relative; overflow: hidden; }
+.achievement-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; }
+.achievement-card:nth-child(1)::after { background: var(--gold); }
+.achievement-card:nth-child(2)::after { background: var(--sage); }
+.achievement-card:nth-child(3)::after { background: var(--rust); }
+.achievement-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(0,0,0,0.1); }
+.ach-icon { font-size: 36px; margin-bottom: 16px; }
+.ach-title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+.ach-sub { font-size: 14px; color: var(--ink-muted); line-height: 1.65; }
+
+/* EDUCATION */
+.edu-section { background: #FAFAF8; }
+.edu-inner { max-width: 1100px; margin: 0 auto; padding: 96px 40px; }
+.edu-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 4px; padding: 32px; display: flex; gap: 24px; align-items: flex-start; margin-bottom: 16px; transition: box-shadow 0.2s; }
+.edu-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.08); }
+.edu-icon-wrap { width: 52px; height: 52px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
+.edu-icon-wrap.gold { background: rgba(201,168,76,0.12); }
+.edu-icon-wrap.sage { background: rgba(74,124,89,0.12); }
+.edu-degree { font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 700; margin-bottom: 4px; }
+.edu-school { font-size: 14px; color: var(--ink-muted); margin-bottom: 12px; }
+.edu-meta { display: flex; gap: 8px; flex-wrap: wrap; }
+.edu-pill { background: var(--off-white); border: 1px solid var(--border); font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--ink-soft); padding: 4px 12px; border-radius: 20px; }
+
+/* SKILLS */
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; }
+.skill-tag { background: var(--card-bg); border: 1px solid var(--border); border-radius: 4px; padding: 16px 20px; display: flex; align-items: center; gap: 12px; font-size: 14px; font-weight: 500; transition: border-color 0.2s, transform 0.2s; }
+.skill-tag:hover { transform: translateY(-2px); border-color: var(--gold); }
+.sk-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+/* GOALS */
+.goals-section { background: var(--ink); }
+.goals-inner { max-width: 1100px; margin: 0 auto; padding: 96px 40px; }
+.goals-inner .section-label { color: var(--gold-light); }
+.goals-inner .section-label::after { background: rgba(201,168,76,0.3); }
+.goals-inner .section-title { color: var(--off-white); margin-bottom: 40px; }
+.goals-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.goal-card { border: 1px solid rgba(255,255,255,0.08); border-radius: 4px; padding: 28px; display: flex; gap: 20px; align-items: flex-start; transition: border-color 0.2s; }
+.goal-card:hover { border-color: rgba(201,168,76,0.4); }
+.goal-num { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 900; color: rgba(201,168,76,0.3); line-height: 1; flex-shrink: 0; }
+.goal-text strong { display: block; font-size: 16px; font-weight: 600; color: var(--off-white); margin-bottom: 6px; }
+.goal-text p { font-size: 14px; color: rgba(247,245,240,0.5); line-height: 1.65; }
+
+/* CONTACT */
+.contact-wrap { text-align: center; max-width: 600px; margin: 0 auto; }
+.big-email { font-family: 'Playfair Display', serif; font-size: clamp(22px, 3.5vw, 34px); font-weight: 700; color: var(--ink); text-decoration: none; border-bottom: 2px solid var(--gold); padding-bottom: 4px; display: inline-block; margin-bottom: 40px; transition: color 0.2s; }
+.big-email:hover { color: var(--gold); }
+.social-row { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+.social-btn { display: flex; align-items: center; gap: 10px; padding: 13px 24px; border-radius: 4px; font-size: 13px; font-weight: 600; letter-spacing: 0.5px; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; border: 1px solid var(--border); }
+.social-btn.insta { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #fff; border-color: transparent; }
+.social-btn.email-btn { background: var(--ink); color: #fff; border-color: transparent; }
+.social-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+.divider { height: 1px; background: var(--border); max-width: 1100px; margin: 0 auto; }
+
+/* FOOTER */
+footer { background: var(--ink); color: rgba(247,245,240,0.4); text-align: center; padding: 28px 40px; font-size: 12px; letter-spacing: 1px; }
+footer span { color: var(--gold); }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  nav { padding: 14px 20px; }
+  .nav-links { gap: 14px; }
+  .nav-links a { font-size: 11px; letter-spacing: 0.4px; }
+  .hero { grid-template-columns: 1fr; padding: 100px 20px 60px; gap: 40px; text-align: center; }
+  .hero-right { order: -1; }
+  .hero-img-frame { width: 240px; height: 300px; }
+  .hero-eyebrow { justify-content: center; }
+  .hero-cta { justify-content: center; }
+  .hero-tagline { margin: 0 auto 36px; }
+  .about-grid { grid-template-columns: 1fr; gap: 32px; }
+  .achievements-grid { grid-template-columns: 1fr; }
+  .goals-grid { grid-template-columns: 1fr; }
+  .section { padding: 72px 20px; }
+  .about-inner, .edu-inner, .goals-inner { padding: 72px 20px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-name">Gaurav Singh</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#achievements">Achievements</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#goals">Goals</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div style="max-width:1100px;margin:0 auto;">
+  <section class="hero">
+    <div class="hero-left">
+      <div class="hero-eyebrow">Patna, Bihar · India</div>
+      <h1>Gaurav<br/><em>Singh</em></h1>
+      <p class="hero-tagline">
+        Future <strong>CS Engineer & AI Specialist</strong> — with a flair for modelling and the discipline of a National Cadet.
+      </p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn-gold">Get In Touch</a>
+        <a href="#achievements" class="btn-ghost">See My Journey ↓</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-img-frame">
+        <img src =" https://i.postimg.cc/13wtvFsr/image.jpg" width="240" height="300"/> 
+       
+ 
+        
+        <div class="hero-photo-placeholder" style="display:none;">
+          <div class="avatar-icon">👤</div>
+          <p>Add Your Photo</p>
+        </div>
+      </div>
+      <div class="hero-badge">
+        <strong>CSE</strong>
+        Incoming '26
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ABOUT -->
+<div class="about-section" id="about">
+  <div class="about-inner">
+    <div class="section-label">About Me</div>
+    <h2 class="section-title">More than just a student.</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        I'm <strong>Gaurav Singh</strong>, a driven 12th pass-out from Patna stepping into Computer Science Engineering. My journey so far has been anything but ordinary — from earning a <strong>National Level Scout Certificate</strong> to holding an <strong>NCC 'A' Certificate</strong>, and even stepping in front of the camera for modelling. I believe in building myself across disciplines: disciplined in uniform, expressive on the lens, and analytical behind the screen. My goal is to master AI and land a high-impact tech career — while keeping the creative side alive.
+      </div>
+      <div class="about-highlights">
+        <div class="highlight-chip">
+          <div class="chip-icon">🏕️</div>
+          <div class="chip-text"><strong>National Scout</strong>Certified at National Level</div>
+        </div>
+        <div class="highlight-chip">
+          <div class="chip-icon">🎖️</div>
+          <div class="chip-text"><strong>NCC 'A' Certificate</strong>National Cadet Corps</div>
+        </div>
+        <div class="highlight-chip">
+          <div class="chip-icon">📸</div>
+          <div class="chip-text"><strong>Model</strong>Commercial Experience</div>
+        </div>
+        <div class="highlight-chip">
+          <div class="chip-icon">💻</div>
+          <div class="chip-text"><strong>Future CS Engineer</strong>Specialising in AI/ML</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ACHIEVEMENTS -->
+<section class="section" id="achievements">
+  <div class="section-label">Achievements</div>
+  <h2 class="section-title">What I've earned so far.</h2>
+  <div class="achievements-grid">
+    <div class="achievement-card">
+      <div class="ach-icon">🏕️</div>
+      <div class="ach-title">National Scout</div>
+      <div class="ach-sub">Earned a National Level Scout Certificate — representing discipline, leadership, and community service at the highest scouting level in India.</div>
+    </div>
+    <div class="achievement-card">
+      <div class="ach-icon">🎖️</div>
+      <div class="ach-title">NCC 'A' Certificate</div>
+      <div class="ach-sub">Completed the National Cadet Corps 'A' level certification — training in military drill, teamwork, and national pride.</div>
+    </div>
+    <div class="achievement-card">
+      <div class="ach-icon">📸</div>
+      <div class="ach-title">Model</div>
+      <div class="ach-sub">Hands-on modelling experience combining confidence, stage presence, and aesthetics — a creative identity beyond academics.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EDUCATION -->
+<div class="edu-section" id="education">
+  <div class="edu-inner">
+    <div class="section-label">Education</div>
+    <h2 class="section-title">Academic journey.</h2>
+    <div class="edu-card">
+      <div class="edu-icon-wrap gold">🎓</div>
+      <div>
+        <div class="edu-degree">B.Tech — Computer Science Engineering</div>
+        <div class="edu-school">Pursuing · 2026 onwards · Patna, Bihar</div>
+        <div class="edu-meta">
+          <span class="edu-pill">Upcoming</span>
+          <span class="edu-pill">CSE</span>
+          <span class="edu-pill">Focus: AI / ML</span>
+        </div>
+      </div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-icon-wrap sage">📚</div>
+      <div>
+        <div class="edu-degree">12th — Science Stream (PCM)</div>
+        <div class="edu-school">CBSE  · 2025-26 · Patna, Bihar</div>
+        <div class="edu-meta">
+          <span class="edu-pill">Passed</span>
+          <span class="edu-pill">Science</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SKILLS -->
+<section class="section" id="skills">
+  <div class="section-label">Skills & Interests</div>
+  <h2 class="section-title">What I bring to the table.</h2>
+  <div class="skills-grid">
+    <div class="skill-tag"><div class="sk-dot" style="background:#C9A84C"></div>Leadership</div>
+    <div class="skill-tag"><div class="sk-dot" style="background:#4A7C59"></div>Discipline</div>
+    <div class="skill-tag"><div class="sk-dot" style="background:#B85C38"></div>Modelling</div>
+    <div class="skill-tag"><div class="sk-dot" style="background:#C9A84C"></div>Communication</div>
+    <div class="skill-tag"><div class="sk-dot" style="background:#4A7C59"></div>Teamwork</div>
+    <div class="skill-tag"><div class="sk-dot" style="background:#B85C38"></div>Problem Solving</div>
+    <div class="skill-tag"><div class="sk-dot" style="background:#C9A84C"></div>AI / ML Curiosity</div>
+    <div class="skill-tag"><div class="sk-dot" style="background:#4A7C59"></div>Photography</div>
+    <div class="skill-tag"><div class="sk-dot" style="background:#B85C38"></div>NCC Training</div>
+    <div class="skill-tag"><div class="sk-dot" style="background:#C9A84C"></div>Scout Skills</div>
+  </div>
+</section>
+
+<!-- GOALS -->
+<div class="goals-section" id="goals">
+  <div class="goals-inner">
+    <div class="section-label">Roadmap</div>
+    <h2 class="section-title">Where I'm headed.</h2>
+    <div class="goals-grid">
+      <div class="goal-card">
+        <div class="goal-num">01</div>
+        <div class="goal-text">
+          <strong>Excel in CSE</strong>
+          <p>Build a rock-solid foundation in computer science — algorithms, systems, and software engineering.</p>
+        </div>
+      </div>
+      <div class="goal-card">
+        <div class="goal-num">02</div>
+        <div class="goal-text">
+          <strong>Master AI & Machine Learning</strong>
+          <p>Specialise in artificial intelligence — research, build, and deploy systems that solve real problems.</p>
+        </div>
+      </div>
+      <div class="goal-card">
+        <div class="goal-num">03</div>
+        <div class="goal-text">
+          <strong>Land a High-Impact Tech Job</strong>
+          <p>Target top-tier companies with the best packages — contributing to products used by millions.</p>
+        </div>
+      </div>
+      <div class="goal-card">
+        <div class="goal-num">04</div>
+        <div class="goal-text">
+          <strong>Grow in Modelling</strong>
+          <p>Build a dual identity — an engineer who commands the lens. Tech mind, creative soul.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+  <div class="section-label">Contact</div>
+  <h2 class="section-title" style="text-align:center">Let's connect.</h2>
+  <div class="contact-wrap">
+    <a href="mailto:mrgauv07@gmail.com" class="big-email">mrgauv07@gmail.com</a>
+    <div class="social-row">
+      <a href="https://instagram.com/gauvsin" class="social-btn insta" target="_blank">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        @gauvsin
+      </a>
+      <a href="mailto:mrgauv07@gmail.com" class="social-btn email-btn">✉ Email Me</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Crafted with intention · <span>Gaurav Singh</span> · Patna, Bihar · 2025
+</footer>
+
+</body>
+</html>
